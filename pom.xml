@@ -88,6 +88,7 @@
         <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
         <!-- jhipster-needle-maven-property -->
+		<druid.version>1.1.12</druid.version>
     </properties>
 
     <dependencyManagement>
@@ -133,15 +134,19 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
-        <dependency>
+        <!--
+		<dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        
+		 <!--
+		<dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
         </dependency>
+		-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-bean-validators</artifactId>
@@ -155,19 +160,53 @@
             <artifactId>jackson-databind-nullable</artifactId>
             <version>${jackson-databind-nullable.version}</version>
         </dependency>
+	
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>swagger-bootstrap-ui</artifactId>
+			<version>1.9.6</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		
+		<!--
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>mysql</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        -->
+		<dependency>
             <groupId>javax.cache</groupId>
             <artifactId>cache-api</artifactId>
         </dependency>
+		
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+		
+		
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
@@ -189,13 +228,14 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <!-- Inherited version from Spring Boot can't be used because of regressions -->
             <version>${liquibase.version}</version>
         </dependency>
-        <dependency>
+        -->
+		<dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
         </dependency>
@@ -249,6 +289,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+		<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -276,14 +317,18 @@
             <version>${archunit-junit5.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Adding the engine dependency to the surefire-plugin unfortunately does not work in the current version. -->
+        -->
+		
+		<!-- Adding the engine dependency to the surefire-plugin unfortunately does not work in the current version. -->
         <!-- https://www.archunit.org/userguide/html/000_Index.html#_junit_5 -->
-        <dependency>
+<!--       
+	   <dependency>
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5-engine</artifactId>
             <version>${archunit-junit5.version}</version>
             <scope>test</scope>
         </dependency>
+-->		
         <dependency>
             <groupId>org.zalando</groupId>
             <artifactId>problem-spring-web</artifactId>
@@ -329,10 +374,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-            <plugin>
+            <!--
+			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
+			-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -397,6 +444,7 @@
         </plugins>
         <pluginManagement>
             <plugins>
+			    <!--
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -427,6 +475,7 @@
                         </execution>
                     </executions>
                 </plugin>
+				-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -434,6 +483,7 @@
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+						<encoding>utf-8</encoding>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.springframework.boot</groupId>
@@ -500,6 +550,8 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>${frontend-maven-plugin.version}</version>
                 </plugin>
+				
+				<!--
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
@@ -518,7 +570,8 @@
                         </execution>
                     </executions>
                 </plugin>
-
+                -->
+				
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
                     <artifactId>git-commit-id-plugin</artifactId>
@@ -557,7 +610,8 @@
                             </configuration>
                         </execution>
                         <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
-                        <execution>
+                        <!--
+						<execution>
                             <id>post-unit-test</id>
                             <phase>test</phase>
                             <goals>
@@ -574,11 +628,10 @@
                                 <goal>prepare-agent-integration</goal>
                             </goals>
                             <configuration>
-                                <!-- Sets the path to the file which contains the execution data. -->
                                 <destFile>${jacoco.itReportFile}</destFile>
                             </configuration>
                         </execution>
-                        <!-- Ensures that the code coverage report for integration tests is created after integration tests have been run -->
+
                         <execution>
                             <id>post-integration-tests</id>
                             <phase>post-integration-test</phase>
@@ -590,6 +643,8 @@
                                 <outputDirectory>${jacoco.itReportFolder}</outputDirectory>
                             </configuration>
                         </execution>
+						-->
+						
                     </executions>
                 </plugin>
                 <plugin>
@@ -629,7 +684,8 @@
                         </extraDirectories>
                     </configuration>
                 </plugin>
-                <plugin>
+             <!--
+			 <plugin>
                     <groupId>org.liquibase</groupId>
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>${liquibase.version}</version>
@@ -674,6 +730,8 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+				-->
+				
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven-clean-plugin.version}</version>
@@ -814,11 +872,8 @@
                         </execution>
                     </executions>
                 </plugin>
+				<!--
                 <plugin>
-                    <!--
-                        Plugin that provides API-first development using openapi-generator to
-                        generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
-                    -->
                     <groupId>org.openapitools</groupId>
                     <artifactId>openapi-generator-maven-plugin</artifactId>
                     <version>${openapi-generator-maven-plugin.version}</version>
@@ -843,6 +898,7 @@
                         </execution>
                     </executions>
                 </plugin>
+				-->
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
@@ -874,6 +930,7 @@
         </pluginManagement>
     </build>
     <profiles>
+	    <!--
         <profile>
             <id>no-liquibase</id>
             <properties>
@@ -886,7 +943,9 @@
                 <profile.swagger>,swagger</profile.swagger>
             </properties>
         </profile>
-        <profile>
+        -->
+		
+		<profile>
             <id>tls</id>
             <properties>
                 <profile.tls>,tls</profile.tls>
@@ -901,6 +960,7 @@
             </dependencies>
             <build>
                 <plugins>
+				    <!--
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
@@ -937,6 +997,7 @@
                             </execution>
                         </executions>
                     </plugin>
+					-->
                 </plugins>
             </build>
             <properties>
@@ -996,6 +1057,7 @@
                             </execution>
                         </executions>
                     </plugin>
+					<!--
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
@@ -1046,6 +1108,7 @@
                             </execution>
                         </executions>
                     </plugin>
+					-->
                     <plugin>
                         <groupId>pl.project13.maven</groupId>
                         <artifactId>git-commit-id-plugin</artifactId>
@@ -1054,7 +1117,7 @@
             </build>
             <properties>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>prod${profile.swagger}${profile.tls}${profile.no-liquibase}</spring.profiles.active>
+                <!-- <spring.profiles.active>prod${profile.swagger}${profile.tls}${profile.no-liquibase}</spring.profiles.active> -->
             </properties>
         </profile>
         <profile>
@@ -1133,7 +1196,8 @@
                                                 <ignore/>
                                             </action>
                                         </pluginExecution>
-                                        <pluginExecution>
+                                        <!--
+										<pluginExecution>
                                             <pluginExecutionFilter>
                                                 <groupId>com.github.eirslett</groupId>
                                                 <artifactId>frontend-maven-plugin</artifactId>
@@ -1147,6 +1211,7 @@
                                                 <ignore/>
                                             </action>
                                         </pluginExecution>
+										-->
                                         <pluginExecution>
                                             <pluginExecutionFilter>
                                                 <groupId>org.openapitools</groupId>

@@ -13,12 +13,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
+import io.github.jhipster.config.apidoc.SwaggerAutoConfiguration;
 
-@SpringBootApplication
-@EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
+//去除原生的swagger替换后重启项目即可以加载自己的SwaggerConfiguration
+@SpringBootApplication(exclude = {SwaggerAutoConfiguration.class})
+//@SpringBootApplication
+//@EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
+@EnableConfigurationProperties({ ApplicationProperties.class })
 public class SunriseMsApplicationApp {
     private static final Logger log = LoggerFactory.getLogger(SunriseMsApplicationApp.class);
 
